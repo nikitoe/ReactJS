@@ -8,20 +8,29 @@
     <script src="https://unpkg.com/@babel/standalone@7.16.3/babel.min.js"></script>
     <script type="text/babel">
         const root = document.getElementById("root");
-        function Title () {
-            return (
-            <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>Hello i'm a title
-                </h3>
-            );
+        let counter = 0;
+        function counterUp () {
+            counter = counter + 1;
+            render();
         };
+
+        function render () {
+            ReactDOM.render(<Container />, root);
+        };
+        // function Title () {
+        //     return (
+        //     <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>Hello i'm a title
+        //         </h3>
+        //     );
+        // };
         // const h3 = React.createElement("h3", {
         // id: "title"
         //     onMouseEnter: () => console.log("mouse enter"),
         // }, "Hello i'm a title");
         
-        const Button = () => (
-            <button style={{backgroundColor: "tomato"}} onClick={ () => console.log("I'm clicked")}>Click me</button>
-            );
+        // const Button = () => (
+        //     <button style={{backgroundColor: "tomato"}} onClick={ () => console.log("I'm clicked")}>Click me</button>
+        //     );
         // const btn = React.createElement("button", {
         //     onClick: () => console.log("I'm clicked"),
         //     style: {
@@ -30,13 +39,15 @@
         // }, "Click me");
 
         //2개의 component를 가지는 component를 생성, component의 첫 글자는 무조건 대문자로(소문자는 html 태그 문자로 인식하기때문)
-        const Container = () => (
+        function Container() { 
+            return (
             <div>
-                <Title />
-                <Button />
+                <h3>Total Clicks : {counter}</h3>
+                <button onClick={counterUp}>Click me</button>
             </div> 
         );
-        ReactDOM.render(<Container />, root);   //React element들을 root div안에서 보여주는것
+    }
+        render();   //React element들을 root div안에서 보여주는것
     </script>
     
 </html>
