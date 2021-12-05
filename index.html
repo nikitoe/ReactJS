@@ -8,8 +8,17 @@
     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
     <script>
         const root = document.getElementById("root");
-;       const span = React.createElement("span", {id : "sexy-span", style :{color:"red"}},"hello i'm span");
-        ReactDOM.render(span, root);
+        const h3 = React.createElement("h3", {
+            onMouseEnter: () => console.log("mouse enter"),
+        }, "hello i'm span");
+        const btn = React.createElement("button", {
+            onClick: () => console.log("I'm clicked"),
+            style: {
+                backgroundColor: "tomato",
+            }
+        }, "Click me");
+        const container = React.createElement("div", null, [h3, btn]); //2개의 component를 가지는 component를 생성
+        ReactDOM.render(container, root);
     </script>
     
 </html>
