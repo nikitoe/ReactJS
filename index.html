@@ -8,15 +8,15 @@
     <script src="https://unpkg.com/@babel/standalone@7.16.3/babel.min.js"></script>
     <script type="text/babel">
         const root = document.getElementById("root");
-        let counter = 0;
-        function counterUp () {
-            counter = counter + 1;
-            render();
-        };
+        // let counter = 0;
+        // function counterUp () {
+        //     counter = counter + 1;
+        //     render();
+        // };
 
-        function render () {
-            ReactDOM.render(<Container />, root);
-        };
+        // function render () {
+        //     ReactDOM.render(<Container />, root);
+        // };
         // function Title () {
         //     return (
         //     <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>Hello i'm a title
@@ -39,15 +39,16 @@
         // }, "Click me");
 
         //2개의 component를 가지는 component를 생성, component의 첫 글자는 무조건 대문자로(소문자는 html 태그 문자로 인식하기때문)
-        function Container() { 
+        function App() { 
+            const [counter, modifier] = React.useState(0);
             return (
             <div>
                 <h3>Total Clicks : {counter}</h3>
-                <button onClick={counterUp}>Click me</button>
+                <button>Click me</button>
             </div> 
         );
     }
-        render();   //React element들을 root div안에서 보여주는것
+    ReactDOM.render(<App />, root);   //React element들을 root div안에서 보여주는것
     </script>
     
 </html>
