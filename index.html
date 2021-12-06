@@ -40,11 +40,14 @@
 
         //2개의 component를 가지는 component를 생성, component의 첫 글자는 무조건 대문자로(소문자는 html 태그 문자로 인식하기때문)
         function App() { 
-            const [counter, modifier] = React.useState(0);
+            const [counter, setCounter] = React.useState(0);
+            const onClick = () => {
+                setCounter(counter + 1);
+            };
             return (
             <div>
                 <h3>Total Clicks : {counter}</h3>
-                <button>Click me</button>
+                <button onClick={onClick}>Click me</button>
             </div> 
         );
     }
