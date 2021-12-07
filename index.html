@@ -40,9 +40,10 @@
 
         //2개의 component를 가지는 component를 생성, component의 첫 글자는 무조건 대문자로(소문자는 html 태그 문자로 인식하기때문)
         function App() { 
-            const [counter, setCounter] = React.useState(0);
+            const [counter, setCounter] = React.useState(0);    //modifier 함수를 이용해서 state를 바꾸면, 해당 컴포넌트가 재생성되고 코드가 새로운 값을 가지고  재실행된다.(state가 바뀌면, 새로운 값을 가지고 컴퍼넌트가 리렌더링된다.)
             const onClick = () => {
-                setCounter(counter + 1);
+                // setCounter(counter + 1);
+                setCounter((current) => current +1);
             };
             return (
             <div>
