@@ -3,11 +3,11 @@
     <body>
         <div id="root"></div>
     </body>
-    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone@7.16.3/babel.min.js"></script>
     <script type="text/babel">
-        const root = document.getElementById("root");
+
         // let counter = 0;
         // function counterUp () {
         //     counter = counter + 1;
@@ -37,22 +37,42 @@
         //         backgroundColor: "tomato",
         //     }
         // }, "Click me");
-
+    
+        // #3.4 State Functions
         //2개의 component를 가지는 component를 생성, component의 첫 글자는 무조건 대문자로(소문자는 html 태그 문자로 인식하기때문)
-        function App() { 
-            const [counter, setCounter] = React.useState(0);    //modifier 함수를 이용해서 state를 바꾸면, 해당 컴포넌트가 재생성되고 코드가 새로운 값을 가지고  재실행된다.(state가 바뀌면, 새로운 값을 가지고 컴퍼넌트가 리렌더링된다.)
-            const onClick = () => {
-                // setCounter(counter + 1);
-                setCounter((current) => current +1);
-            };
-            return (
+    //     function App() { 
+    //         const [counter, setCounter] = React.useState(0);    //modifier 함수를 이용해서 state를 바꾸면, 해당 컴포넌트가 재생성되고 코드가 새로운 값을 가지고  재실행된다.(state가 바뀌면, 새로운 값을 가지고 컴퍼넌트가 리렌더링된다.)
+    //         const onClick = () => {
+    //             // setCounter(counter + 1);
+    //             setCounter((current) => current +1);
+    //         };
+    //         return (
+    //         <div>
+    //             <h3>Total Clicks : {counter}</h3>
+    //             <button onClick={onClick}>Click me</button>
+    //         </div> 
+    //     );
+    // }
+    
+
+    function App() {
+        const [minutes, setMinutes] = React.useState();
+        const onChange = (event) => {
+            setMinutes(event.target.value);
+        };
+        return (
             <div>
-                <h3>Total Clicks : {counter}</h3>
-                <button onClick={onClick}>Click me</button>
+                <h1 className="hi">Super Converter</h1>
+                <label htmlFor="minutes">Minutes</label>
+                <input value={minutes} id="minutes" placeholder="Minutes" type="number" onChange={onChange}/>
+                <h4>You want to convert {minutes}</h4>
+                <label htmlFor="hours">Hours</label>
+                <input id="hours" placeholder="Hours" type="number" />
             </div> 
         );
-    }
+    };
+
+    const root = document.getElementById("root");
     ReactDOM.render(<App />, root);   //React element들을 root div안에서 보여주는것
     </script>
-    
 </html>
