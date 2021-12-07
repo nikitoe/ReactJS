@@ -56,13 +56,22 @@
     
 
     function App() {
-        const [minutes, setMinutes] = React.useState();
+        const [amount, setAmount] = React.useState(0);
+        const [flipped, setFlipped] = React.useState(false);
+
+        // func onChange가 기동하면, 입력된 값이 재생성되고 해당 값으로 재실행
         const onChange = (event) => {
-            setMinutes(event.target.value);
+            setAmount(event.target.value);
         };
 
-        //state를 리스팅하거나, 연결한 모든 것들을 전부 0으로 돌려줌
-        const reset = () => setMinutes(0);
+        // state를 리스팅하거나, 연결한 모든 것들을 전부 0으로 돌려줌
+        const reset = () => setAmount(0);
+
+        // filpped 값이 true이면 false, true이면 false
+        const onFlip = () => {
+            reset();
+            setFlipped((current) => !current)
+        };
 
         return (
             <div>
@@ -70,14 +79,15 @@
 
                 <div>
                 <label htmlFor="minutes">Minutes</label>
-                <input value={minutes} id="minutes" placeholder="Minutes" type="number" onChange={onChange}/>
+                <input value={flipped ? amount * 60 : amount} id="minutes" placeholder="Minutes" type="number" onChange={onChange} disabled={flipped}/>
                  </div>
 
                 <div>
                 <label htmlFor="hours">Hours</label>
-                <input value={Math.round(minutes / 60)} id="hours" placeholder="Hours" type="number" disabled />
+                <input value={flipped ? amount : Math.round(amount / 60)} id="hours" placeholder="Hours" type="number" onChange={onChange} disabled={!flipped} />
                 </div>
                 <button onClick={reset}>Reset</button>
+                <button onClick={onFlip}>Flip</button>
             </div> 
         );
     };
